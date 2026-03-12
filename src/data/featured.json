@@ -1,0 +1,46 @@
+[
+  {
+    "id": "halcyon",
+    "title": "Halcyon Theme",
+    "external": "https://example.com/halcyon",
+    "github": "https://github.com/example/halcyon-theme",
+    "cta": "https://example.com/halcyon/docs",
+    "tech": ["Gatsby", "React", "Styled Components"],
+    "cover": "/content/featured/HalcyonTheme/cover.jpg",
+    "summary": "A minimal, responsive theme built for composing focused blog posts and projects.",
+    "html": "<p>A minimal, responsive theme built for composing focused blog posts and projects.</p><ul><li>Custom image optimization</li><li>Accessible components</li><li>Themeable styles</li></ul>"
+  },
+  {
+    "id": "amfm",
+    "title": "AM/FM Player",
+    "external": "https://example.com/amfm",
+    "github": "https://github.com/example/amfm-player",
+    "cta": null,
+    "tech": ["React", "WebAudio API", "CSS Grid"],
+    "cover": "/content/featured/AMFM/cover.jpg",
+    "summary": "A lightweight audio player demo showcasing adaptive layouts and low-latency playback.",
+    "html": "<p>A lightweight audio player demo showcasing adaptive layouts and low-latency playback.</p><ul><li>Responsive UI</li><li>Custom audio visualizer</li></ul>"
+  },
+  {
+    "id": "apple-music-embed",
+    "title": "Apple Music Embed Player",
+    "external": "https://example.com/apple-music-embed",
+    "github": "https://github.com/example/apple-music-embed",
+    "cta": "https://example.com/apple-music-embed/docs",
+    "tech": ["JavaScript", "iFrame integration"],
+    "cover": "/content/featured/AppleMusicEmbedPlayer/cover.jpg",
+    "summary": "An embeddable Apple Music player with lightweight controls and share links.",
+    "html": "<p>An embeddable Apple Music player with lightweight controls and share links.</p><ul><li>Embed-friendly markup</li><li>Small bundle size</li></ul>"
+  },
+  {
+    "id": "crowddj",
+    "title": "CrowdDJ",
+    "external": "https://example.com/crowddj",
+    "github": "https://github.com/example/crowddj",
+    "cta": null,
+    "tech": ["Node", "Socket.io", "React"],
+    "cover": "/content/featured/CrowdDJ/cover.jpg",
+    "summary": "Live collaborative DJ app for parties with queue voting and sync playback.",
+    "html": "<p>Live collaborative DJ app for parties with queue voting and sync playback.</p><ul><li>Real-time collaboration</li><li>Queue voting</li></ul>"
+  }
+]

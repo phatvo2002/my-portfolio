@@ -1,10 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import featuredList from '../../data/featured.json';
 import styled from 'styled-components';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
-import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
 
 const StyledProjectsGrid = styled.ul`
@@ -304,34 +302,20 @@ const StyledProject = styled.li`
 `;
 
 const Featured = () => {
-  const data = useStaticQuery(graphql`
-    {
-      featured: allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/content/featured/" } }
-        sort: { fields: [frontmatter___date], order: ASC }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              title
-              cover {
-                childImageSharp {
-                  gatsbyImageData(width: 700, placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
-                }
-              }
-              tech
-              github
-              external
-              cta
-            }
-            html
-          }
-        }
-      }
-    }
-  `);
-
-  const featuredProjects = data.featured.edges.filter(({ node }) => node);
+  // Use static JSON data instead of GraphQL
+  const featuredProjects = featuredList.map(item => ({
+    node: {
+      frontmatter: {
+        title: item.title,
+        cover: item.cover,
+        tech: item.tech || [],
+        github: item.github,
+        external: item.external,
+        cta: item.cta,
+      },
+      html: item.html || `<p>${item.summary || ''}</p>`,
+    },
+  }));
   const revealTitle = useRef(null);
   const revealProjects = useRef([]);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -355,8 +339,7 @@ const Featured = () => {
         {featuredProjects &&
           featuredProjects.map(({ node }, i) => {
             const { frontmatter, html } = node;
-            const { external, title, tech, github, cover, cta } = frontmatter;
-            const image = getImage(cover);
+            const { external, title, tech, github, cover } = frontmatter;
 
             return (
               <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
@@ -380,30 +363,12 @@ const Featured = () => {
                         ))}
                       </ul>
                     )}
-
-                    <div className="project-links">
-                      {cta && (
-                        <a href={cta} aria-label="Course Link" className="cta">
-                          Learn More
-                        </a>
-                      )}
-                      {github && (
-                        <a href={github} aria-label="GitHub Link">
-                          <Icon name="GitHub" />
-                        </a>
-                      )}
-                      {external && !cta && (
-                        <a href={external} aria-label="External Link" className="external">
-                          <Icon name="External" />
-                        </a>
-                      )}
-                    </div>
                   </div>
                 </div>
 
                 <div className="project-image">
                   <a href={external ? external : github ? github : '#'}>
-                    <GatsbyImage image={image} alt={title} className="img" />
+                    <img src={cover} alt={title} className="img" />
                   </a>
                 </div>
               </StyledProject>

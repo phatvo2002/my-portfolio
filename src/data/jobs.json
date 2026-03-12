@@ -1,0 +1,20 @@
+[
+  {
+    "id": "pyramid software & consulting co.ltd",
+    "company": "pyramid software & consulting co.ltd",
+    "title": "Junior Full Stack Developer",
+    "startDate": "2024-02",
+    "endDate": "2026-02",
+    "location": "Phu Nhuan District, HCM City",
+    "summary": "Worked on developing and maintaining ERP systems using Asp.Net and React.",
+    "responsibilities": [
+      "-Designed and developed ERP modules ; participated in full-cycle development (coding → deployment).",
+      "- Collected, processed, and analyzed survey data; generated customized reports for QA and examination boards.",
+      "- Authored UML documentation, technical specs, and user manuals.",
+      "- Supported clients in system setup, deployment, server migration, and user training.",
+      "- Provided ongoing support, troubleshooting, and feature enhancements"
+    ],
+    "logo": "/content/jobs/Apple/logo.png",
+    "url": "https://www.apple.com"
+  }
+]

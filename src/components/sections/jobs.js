@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import jobsList from '../../data/jobs.json';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
 import { srConfig } from '@config';
@@ -70,7 +70,7 @@ const StyledTabButton = styled.button`
   ${({ theme }) => theme.mixins.link};
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 30%;
   height: var(--tab-height);
   padding: 0 20px 2px;
   border-left: 2px solid var(--lightest-navy);
@@ -165,29 +165,25 @@ const StyledTabPanel = styled.div`
 `;
 
 const Jobs = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      jobs: allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/content/jobs/" } }
-        sort: { fields: [frontmatter___date], order: DESC }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              title
-              company
-              location
-              range
-              url
-            }
-            html
-          }
-        }
-      }
-    }
-  `);
-
-  const jobsData = data.jobs.edges;
+  // Use static JSON data instead of GraphQL
+  const jobsData = jobsList.map(job => ({
+    node: {
+      frontmatter: {
+        title: job.title,
+        company: job.company,
+        url: job.url,
+        range:
+          job.startDate && job.endDate
+            ? `${job.startDate} — ${job.endDate}`
+            : job.startDate || job.endDate || '',
+      },
+      html: `<p>${job.summary || ''}</p>${
+        job.responsibilities && job.responsibilities.length
+          ? `<ul>${job.responsibilities.map(r => `<li>${r}</li>`).join('')}</ul>`
+          : ''
+      }`,
+    },
+  }));
 
   const [activeTabId, setActiveTabId] = useState(0);
   const [tabFocus, setTabFocus] = useState(null);
